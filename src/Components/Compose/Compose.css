@@ -1,0 +1,71 @@
+.compose{
+    position: absolute;
+    bottom: 0;
+    right: 70px;
+    min-width: 500px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0px 0px 8px rgb(51 51 51/59%);
+    background-color: #fff;
+}
+.compose .compose__header{
+    display: flex;
+    justify-content: space-between;
+    background: #333;
+    color: #fff;
+    align-items: center;
+    padding: 7px 15px;
+}
+
+.compose__headerLeft span{
+    font-size: 14px;
+}
+
+.compose__headerRight{
+    display: flex;
+    align-items: center;
+}
+.compose__headerLeft{
+    display: flex;
+    align-items: center;
+}
+.compose .compose__header .compose__header_Right svg{
+    font-size: 28px;
+    margin-left: 10px;
+    transition: 0.2s linear 0s;
+    padding: 3px;
+}
+.compose__header_Right svg:nth-child(2) path{
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+.compose .compose__header .compose__header_Right svg:hover{
+    background: #545454;
+}
+
+.compose__body{
+    display: flex;
+}
+.compose__bodyForm{
+    display: flex;
+    flex-direction: column;
+}
+.compose__bodyForm input, textarea{
+    width: 100%;
+    height: 40px;
+    outline: 0;
+    border: 0px;
+    box-shadow: inset 0 -1px 0 0 rgb(100, 121, 143/12%);
+    padding: 0px 10px;
+}
+.compose__bodyForm textarea{
+    height: 400px;
+}
+
+.compose__footer button{
+    background-color: rgb(40, 164, 212);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
