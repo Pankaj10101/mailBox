@@ -100,10 +100,16 @@ border-bottom: 3px solid #d93025 !important;
     display: flex;
     align-items: center;
     margin-top: 15px;
-    flex: 10%;
+    flex: 20%;
     justify-content: flex-end;
 }
-
+.emailbody_right svg{
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+.emailbody_right svg:hover{
+    color: grey;
+}
 .emailbody:hover{
     box-shadow: 2px 2px 4px whitesmoke;
     cursor: pointer;
