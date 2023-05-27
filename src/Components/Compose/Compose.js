@@ -19,7 +19,6 @@ const Compose = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const user = useSelector(state=>state.auth.value)
-
   const handleEditorStateChange = (state) => {
     setEditorState(state);
   };
@@ -40,6 +39,7 @@ const Compose = () => {
         from:user.email,
         fromName:user.displayName,
         timeStamp: serverTimestamp(),
+        isRead:false
       });
       alert("email sent successfully");
       setTo("");

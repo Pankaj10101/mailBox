@@ -9,15 +9,15 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
-const Sent = ({ name, subject, message, time, email, id }) => {
+const Recieve = ({ name, subject, message, time, email, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const emails = useSelector(state=>state.mail.allMails)
   const user = useSelector((state) => state.auth.value);
 
-  // const currentMail =  emails.find(item=>item.id===id)
+  const currentMail =  emails.find(item=>item.id===id)
 
-  const openMessage = () => {
+  const openMessage = async (id) => {
     dispatch(
       setSelectedMessage({
         name,
@@ -27,17 +27,17 @@ const Sent = ({ name, subject, message, time, email, id }) => {
         email
       })
     );
-    // const mailRef = doc(db, "emails", id);
-    // try {
-    //   await setDoc(mailRef, { isRead: true }, { merge: true });
-    //   console.log("isRead field updated successfully");
-    // } catch (error) {
-    //   console.error("Error updating isRead field:", error);
-    // }
+    const mailRef = doc(db, "emails", id);
+    try {
+      await setDoc(mailRef, { isRead: true }, { merge: true });
+      console.log("isRead field updated successfully");
+    } catch (error) {
+      console.error("Error updating isRead field:", error);
+    }
     navigate("/mail");
   };
   return (
-    <div className={`emailbody`} onClick={openMessage}  >
+    <div className={`emailbody ${!currentMail.data.isRead ? 'activeMail' : ''}`} onClick={()=>openMessage(id)}  >
       <div className="emailbody_left">
         <CheckBoxOutlineBlankIcon />
         <StarBorderIcon />
@@ -59,4 +59,4 @@ const Sent = ({ name, subject, message, time, email, id }) => {
   );
 };
 
-export default Sent;
+export default Recieve;

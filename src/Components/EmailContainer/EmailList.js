@@ -1,6 +1,7 @@
 import React from "react";
 import Sent from "../Inbox/Sent";
 import { useSelector } from "react-redux";
+import Recieve from "../Inbox/Recieve";
 // import "./EmailContainer.css";
 // import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 // import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -9,10 +10,12 @@ import { useSelector } from "react-redux";
 // import { setSelectedMessage } from "../../store/Slices/MailSlice";
 // import { useNavigate } from "react-router-dom";
 
-const EmailList = ({ name, subject, message, time, email }) => {
-  const user = useSelector(state=>state.auth.value)
-  const isInbox =useSelector(state=>state.mail.isInbox)
-  const isSentBox =useSelector(state=>state.mail.isSentBox)
+const EmailList = () => {
+  const user = useSelector((state) => state.auth.value);
+  const isInbox = useSelector((state) => state.mail.isInbox);
+  const isSentBox = useSelector((state) => state.mail.isSentBox);
+
+  
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
   // const openMessage = () => {
@@ -27,36 +30,46 @@ const EmailList = ({ name, subject, message, time, email }) => {
   //   );
   //   navigate("/mail");
   // };
-  console.log(isInbox,isSentBox)
+  console.log(isInbox, isSentBox);
   const emails = useSelector((state) => state.mail.allMails);
 
-  const recievedMails = emails.filter((item)=>item.data.to===user.email)
-  const sentMails = emails.filter(item=>item.data.from===user.email)
-  console.log(recievedMails)
+  const recievedMails = emails.filter((item) => item.data.to === user.email);
+  const sentMails = emails.filter((item) => item.data.from === user.email);
+  console.log(recievedMails);
   console.log(emails);
   return (
     <>
-        {isInbox && !isSentBox && recievedMails?.map((item) => (
-      <Sent
-        key={item.id}
-        name={item.data.fromName}
-        subject={item.data.subject}
-        message={item.data.emailContent}
-        time={new Date(item.data.timeStamp?.seconds * 1000).toLocaleTimeString()}
-        email={item.data.from}
-      />
-    ))}
-    {!isInbox && isSentBox && sentMails?.map((item) => (
-      <Sent
-        key={item.id}
-        name={item.data.fromName}
-        subject={item.data.subject}
-        message={item.data.emailContent}
-        time={new Date(item.data.timeStamp?.seconds * 1000).toLocaleTimeString()}
-        email={item.data.from}
-      />
-    ))}
-  </>
+      {isInbox &&
+        !isSentBox &&
+        recievedMails?.map((item) => (
+          <Recieve
+            key={item.id}
+            id={item.id}
+            name={item.data.fromName}
+            subject={item.data.subject}
+            message={item.data.emailContent}
+            time={new Date(
+              item.data.timeStamp?.seconds * 1000
+            ).toLocaleTimeString()}
+            email={item.data.from}
+          />
+        ))}
+      {!isInbox &&
+        isSentBox &&
+        sentMails?.map((item) => (
+          <Sent
+            key={item.id}
+            id={item.id}
+            name={item.data.fromName}
+            subject={item.data.subject}
+            message={item.data.emailContent}
+            time={new Date(
+              item.data.timeStamp?.seconds * 1000
+            ).toLocaleTimeString()}
+            email={item.data.from}
+          />
+        ))}
+    </>
     // <div className="emailbody" onClick={openMessage}>
     //   <div className="emailbody_left">
     //     <CheckBoxOutlineBlankIcon />

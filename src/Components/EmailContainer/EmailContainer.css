@@ -202,3 +202,25 @@ border-bottom: 3px solid #d93025 !important;
     box-shadow: 0px 0px 3px #ccc;
     height: 100%;
 }
+
+.emailbody.activeMail {
+    background-color: rgb(23, 130, 165);
+    color: white;
+  }
+  
+  .emailbody.activeMail h4 {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .emailbody.activeMail p {
+    color: #fff;
+    opacity: 0.9;
+  }
+  
+  .emailbody.activeMail .emailbody_left svg,
+  .emailbody.activeMail .emailbody_middle_msg svg,
+  .emailbody.activeMail .emailbody_right p {
+    fill: #fff;
+  }
+  
