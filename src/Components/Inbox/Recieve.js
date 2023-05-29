@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../EmailContainer/EmailContainer.css";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -9,13 +9,11 @@ import { setSelectedMessage } from "../../store/Slices/MailSlice";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";
-import { IconButton } from "@material-ui/core";
 
 const Recieve = ({ name, subject, message, time, email, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const emails = useSelector((state) => state.mail.allMails);
-  const user = useSelector((state) => state.auth.value);
 
   const currentMail = emails.find((item) => item.id === id);
 
@@ -36,7 +34,7 @@ const Recieve = ({ name, subject, message, time, email, id }) => {
     } catch (error) {
       console.error("Error updating isRead field:", error);
     }
-    navigate("/mail");
+    navigate(`/mail/${id}`);
   };
 
   const deleteMail= async ()=>{

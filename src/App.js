@@ -10,9 +10,9 @@ import EmailDetail from "./Components/EmailContainer/EmailDetail";
 import Login from "./Components/Login/Login";
 import { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
-import { setIsLogin, signin, signout } from "./store/Slices/AuthSlice";
+import { signin, signout } from "./store/Slices/AuthSlice";
 import { collection, onSnapshot } from "firebase/firestore";
-import { setAllMails, setInbox } from "./store/Slices/MailSlice";
+import { setAllMails } from "./store/Slices/MailSlice";
 import { HalfMalf } from "react-spinner-animated";
 import 'react-spinner-animated/dist/index.css'
 
@@ -38,7 +38,7 @@ function App() {
     return () => {
       emailData();
     };
-  }, []);
+  }, [dispatch]);
 
   const getLoginState= async ()=>{
    auth.onAuthStateChanged((user) => {
@@ -75,7 +75,7 @@ function App() {
             <SideBar />
             <Routes>
               <Route exact path="/" element={<EmailContainer />} />
-              <Route path="/mail" element={<EmailDetail />} />
+              <Route path="/mail/:id" element={<EmailDetail />} />
             </Routes>
           </div>
           {composeIsOpen && <Compose />}
