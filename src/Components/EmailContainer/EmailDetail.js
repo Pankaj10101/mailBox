@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./EmailContainer.css";
 import { IconButton } from "@material-ui/core";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
